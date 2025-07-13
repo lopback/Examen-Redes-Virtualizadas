@@ -1,0 +1,177 @@
+Building configuration...
+
+Current configuration : 3535 bytes
+!
+! Last configuration change at 00:30:10 UTC Sun Jul 13 2025 by cisco
+!
+version 16.9
+service timestamps debug datetime msec
+service timestamps log datetime msec
+platform qfp utilization monitor load 80
+no platform punt-keepalive disable-kernel-core
+platform console virtual
+!
+hostname ChaconRivera
+!
+boot-start-marker
+boot-end-marker
+!
+!
+!
+no aaa new-model
+!
+!
+!
+!
+!
+!
+!
+ip domain name examen.cl
+!
+!
+!
+login on-success log
+!
+!
+!
+!
+!
+!
+!
+subscriber templating
+! 
+! 
+! 
+! 
+!
+multilink bundle-name authenticated
+!
+!
+!
+!
+!
+crypto pki trustpoint TP-self-signed-2303308089
+ enrollment selfsigned
+ subject-name cn=IOS-Self-Signed-Certificate-2303308089
+ revocation-check none
+ rsakeypair TP-self-signed-2303308089
+!
+!
+crypto pki certificate chain TP-self-signed-2303308089
+ certificate self-signed 01
+  30820330 30820218 A0030201 02020101 300D0609 2A864886 F70D0101 05050030 
+  31312F30 2D060355 04031326 494F532D 53656C66 2D536967 6E65642D 43657274 
+  69666963 6174652D 32333033 33303830 3839301E 170D3235 30373132 32333336 
+  35375A17 0D333030 31303130 30303030 305A3031 312F302D 06035504 03132649 
+  4F532D53 656C662D 5369676E 65642D43 65727469 66696361 74652D32 33303333 
+  30383038 39308201 22300D06 092A8648 86F70D01 01010500 0382010F 00308201 
+  0A028201 0100B187 5D7C732C 6175470E CA902F1C FED03E28 71590261 CAB52928 
+  029BB8B2 6DC73BD5 BFC1AAB2 4AC947F4 D3AD1DE1 03259734 1E108878 32DD1C35 
+  E9ABCDD5 712CCACA A59F428F 0F64FF4E 85399CE2 69AD3A86 B715C40A BEDC4ED2 
+  AA8B4F51 A8772BAE 58A22274 F71B56A2 56608E3B 110FF563 202B73EF C8E81E9F 
+  93AFE52C F06401BC 13423E63 B293C4DF 5AC163E0 6B7DA0A1 32BD9F61 F9CF778A 
+  FA14D1E8 2FAAF9C0 DE70E255 BDE41F83 7E4F2A6A 26D134FB C35AFBFE 66E1347B 
+  4DED7CDD E6F62202 E41241B1 95E380A8 FC57D9BC 76A8FD4D AD861ABB 667532DD 
+  57FCBCBE B3260B0C 7FE2F630 E2912CF4 E71CEEEC 606C1C97 4324BF7D B7A2B289 
+  CE7752F8 02DF0203 010001A3 53305130 0F060355 1D130101 FF040530 030101FF 
+  301F0603 551D2304 18301680 14D63F6B 982A6801 6FC950AF 1B32FD82 5287F341 
+  86301D06 03551D0E 04160414 D63F6B98 2A68016F C950AF1B 32FD8252 87F34186 
+  300D0609 2A864886 F70D0101 05050003 82010100 05E14397 B0F0D855 BC5461CB 
+  7293C2E0 9A2F5C13 4F264EE0 2BCC72C8 B377D014 561F8C40 F217539C 82D1D6E7 
+  F84BE3F0 F7118076 CD639BE2 6BF83382 E362561B 41B42DD4 C394FB6B D11364BF 
+  FCA5EFCA 127A106F 4DFA926F 2F0BE88A EBC8B4D0 30BCDA3A 84BCF482 5AD92AFC 
+  A8BAA6FF 81D5D4B9 68B4981B 0CAA4F8C 3CD9E430 9E62A9FD 62C7CD5C 02576454 
+  596D2958 59473096 E29752D7 F004E205 8EAC6C4F 680A541F 7C6E1EB8 C29B6B59 
+  F52FFC84 FF63CFD0 7616D9F0 8C2187D8 2C59179C 8ABFA309 D2CBDA36 65E33E2B 
+  9DBC31A5 82E3227B 47430F62 505FF563 29504879 10AFE3D3 D3B45185 B16E8D01 
+  E843CAE5 C34C83B7 8245FCB2 F6BCD7F8 0FE6392E
+  	quit
+!
+!
+!
+!
+!
+!
+!
+!
+license udi pid CSR1000V sn 9NCXDZQVHWY
+no license smart enable
+diagnostic bootup level minimal
+!
+spanning-tree extend system-id
+!
+netconf-yang
+!
+restconf
+!
+username cisco privilege 15 password 0 cisco
+!
+redundancy
+!
+!
+!
+!
+!
+!
+! 
+!
+!
+!
+!
+!
+!
+!
+!
+!
+!
+!
+!
+! 
+! 
+!
+!
+interface Loopback33
+ ip address 33.33.33.33 255.255.255.255
+ shutdown
+!
+interface Loopback44
+ no ip address
+ ipv6 address FE80::1 link-local
+ ipv6 address 3001:ABCD:ABCD:4::4/128
+!
+interface GigabitEthernet1
+ ip address dhcp
+ negotiation auto
+ no mop enabled
+ no mop sysid
+!
+ip forward-protocol nd
+no ip http server
+ip http secure-server
+ip http client source-interface GigabitEthernet1
+!
+ip ssh version 2
+!
+!
+!
+!
+!
+control-plane
+!
+!
+!
+!
+!
+!
+line con 0
+ stopbits 1
+line vty 0 4
+ login local
+ transport input ssh
+!
+!
+!
+!
+!
+!
+end

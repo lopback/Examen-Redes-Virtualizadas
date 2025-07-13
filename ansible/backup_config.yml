@@ -1,0 +1,16 @@
+---
+- name: Respaldar configuración del router CSR1000v
+  hosts: routers
+  gather_facts: no
+
+  tasks:
+    - name: Ejecutar show running-config y guardar resultado
+      ios_command:
+        commands:
+          - show running-config
+      register: resultado_config
+
+    - name: Guardar salida en archivo local
+      copy:
+        content: "{{ resultado_config.stdout[0] }}"
+        dest: "respaldo_running_config.txt"
